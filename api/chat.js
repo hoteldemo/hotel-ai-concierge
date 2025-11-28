@@ -9,9 +9,19 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: "No message provided" });
   }
 
-  // Hier kommt später KI + Hotelwissen rein
-  return res.json({
-    answer: "Der AI Concierge ist bereit ✅",
+  // simple Logik (Teststufe)
+  let answer = "Danke für deine Anfrage! 😊";
+
+  if (message.toLowerCase().includes("check")) {
+    answer = "Der Check-in ist ab 15:00 Uhr möglich. Früher je nach Verfügbarkeit.";
+  }
+
+  if (message.toLowerCase().includes("spa")) {
+    answer = "Unser Spa ist täglich von 07:00 bis 21:00 Uhr geöffnet.";
+  }
+
+  res.status(200).json({
+    answer,
     isEvent: false
   });
 }
